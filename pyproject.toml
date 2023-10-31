@@ -23,7 +23,7 @@ classifiers = [
   "Programming Language :: Python :: Implementation :: CPython",
   "Programming Language :: Python :: Implementation :: PyPy",
 ]
-dependencies = ['edwh']
+dependencies = ['edwh', 'edwh-pipcompile-plugin']
 
 [project.optional-dependencies]
 dev = [
