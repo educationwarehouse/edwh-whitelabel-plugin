@@ -11,19 +11,22 @@ requires-python = ">=3.10"
 license = "MIT"
 keywords = []
 authors = [
-  { name = "Remco Boerma", email = "remco.b@educationwarehouse.nl" },
-  { name = "Robin van der Noord", email = "robin.vdn@educationwarehouse.nl" },
+    { name = "Remco Boerma", email = "remco.b@educationwarehouse.nl" },
+    { name = "Robin van der Noord", email = "robin.vdn@educationwarehouse.nl" },
 ]
 classifiers = [
-  "Development Status :: 4 - Beta",
-  "Programming Language :: Python",
-  "Programming Language :: Python :: 3.10",
-  "Programming Language :: Python :: 3.11",
-  "Programming Language :: Python :: 3.12",
-  "Programming Language :: Python :: Implementation :: CPython",
-  "Programming Language :: Python :: Implementation :: PyPy",
+    "Development Status :: 4 - Beta",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: Implementation :: CPython",
+    "Programming Language :: Python :: Implementation :: PyPy",
 ]
-dependencies = ['edwh', 'edwh-pipcompile-plugin']
+dependencies = [
+    'edwh',
+    'edwh-pipcompile-plugin'
+]
 
 [project.optional-dependencies]
 dev = [
@@ -40,6 +43,10 @@ Source = "https://github.com/educationwarehouse/edwh-whitelabel-tasks-plugin"
 # https://packaging.python.org/en/latest/guides/creating-and-discovering-plugins/#using-package-metadata
 [project.entry-points."edwh.tasks"]
 wl = "edwh_whitelabel_plugin.whitelabel_plugin"
+
+[tool.edwh.pipcompile.example]
+input = ["whitelabel.in", "platform.in"]
+output = "combined.txt"
 
 [tool.hatch.version]
 path = "src/edwh_whitelabel_plugin/__about__.py"
@@ -58,19 +65,19 @@ parser_angular_patch_types = "fix,perf,refactor,build,chore,patch"
 
 [tool.hatch.envs.default]
 dependencies = [
-  "coverage[toml]>=6.5",
-  "pytest",
+    "coverage[toml]>=6.5",
+    "pytest",
 ]
 [tool.hatch.envs.default.scripts]
 test = "pytest {args:tests}"
 test-cov = "coverage run -m pytest {args:tests}"
 cov-report = [
-  "- coverage combine",
-  "coverage report",
+    "- coverage combine",
+    "coverage report",
 ]
 cov = [
-  "test-cov",
-  "cov-report",
+    "test-cov",
+    "cov-report",
 ]
 
 [[tool.hatch.envs.all.matrix]]
@@ -79,24 +86,24 @@ python = ["3.10", "3.11", "3.12"]
 [tool.hatch.envs.lint]
 detached = true
 dependencies = [
-  "black>=23.1.0",
-  "mypy>=1.0.0",
-  "ruff>=0.0.243",
+    "black>=23.1.0",
+    "mypy>=1.0.0",
+    "ruff>=0.0.243",
 ]
 [tool.hatch.envs.lint.scripts]
 typing = "mypy --install-types --non-interactive {args:src/edwh_whitelabel_plugin tests}"
 style = [
-  "ruff {args:.}",
-  "black --check --diff {args:.}",
+    "ruff {args:.}",
+    "black --check --diff {args:.}",
 ]
 fmt = [
-  "black {args:.}",
-  "ruff --fix {args:.}",
-  "style",
+    "black {args:.}",
+    "ruff --fix {args:.}",
+    "style",
 ]
 all = [
-  "style",
-  "typing",
+    "style",
+    "typing",
 ]
 
 [tool.black]
@@ -105,49 +112,36 @@ line-length = 120
 skip-string-normalization = true
 
 [tool.ruff]
-target-version = "py37"
+target-version = "py310"
 line-length = 120
+
 select = [
-  "A",
-  "ARG",
-  "B",
-  "C",
-  "DTZ",
-  "E",
-  "EM",
-  "F",
-  "FBT",
-  "I",
-  "ICN",
-  "ISC",
-  "N",
-  "PLC",
-  "PLE",
-  "PLR",
-  "PLW",
-  "Q",
-  "RUF",
-  "S",
-  "T",
-  "TID",
-  "UP",
-  "W",
-  "YTT",
-]
-ignore = [
-  # Allow non-abstract empty methods in abstract base classes
-  "B027",
-  # Allow boolean positional values in function calls, like `dict.get(... True)`
-  "FBT003",
-  # Ignore checks for possible passwords
-  "S105", "S106", "S107",
-  # Ignore complexity
-  "C901", "PLR0911", "PLR0912", "PLR0913", "PLR0915",
+    "F", # pyflake error
+    "E", # pycodestyle error
+    "W", # pycodestyle warning
+    "Q", # quotes
+    "A", # builtins
+    # "C4", # comprehensions - NO: doesn't allow dict()
+    # "RET", # return - NO: annoying
+    "SIM", # simplify
+    "ARG", # unused arguments
+    # "COM", # comma's - NO: annoying
+    # "PTH", # use pathlib - NO: annoying
+    "RUF", # ruff rules
 ]
 unfixable = [
-  # Don't touch unused imports
-  "F401",
+    # Don't touch unused imports
+    "F401",
 ]
+extend-exclude = ["*.bak/", "venv*/"]
+
+ignore = [
+    "RUF013" # implicit Optional
+]
+
+[tool.isort]
+profile = "black"
+extend_skip_glob = ["*.bak/*"]
 
 [tool.ruff.isort]
 known-first-party = ["edwh_whitelabel_plugin"]
@@ -164,7 +158,7 @@ source_pkgs = ["edwh_whitelabel_plugin", "tests"]
 branch = true
 parallel = true
 omit = [
-  "src/edwh_whitelabel_plugin/__about__.py",
+    "src/edwh_whitelabel_plugin/__about__.py",
 ]
 
 [tool.coverage.paths]
@@ -173,7 +167,7 @@ tests = ["tests", "*/edwh-whitelabel-plugin/tests"]
 
 [tool.coverage.report]
 exclude_lines = [
-  "no cov",
-  "if __name__ == .__main__.:",
-  "if TYPE_CHECKING:",
+    "no cov",
+    "if __name__ == .__main__.:",
+    "if TYPE_CHECKING:",
 ]
