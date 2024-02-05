@@ -2,6 +2,10 @@
 
 <!--next-version-placeholder-->
 
+## v0.1.1 (2024-02-05)
+### Fix
+* **pip:** Since pip.compile 0.5.x, wl.compile is deprecated! ([`1736c2d`](https://github.com/educationwarehouse/edwh-whitelabel-plugin/commit/1736c2d797f638e08f9101b4fbde5344bf7c3b3b))
+
 ## v0.1.0 (2023-11-03)
 ### Feature
 * EOD WIP; whitelabel-specific pip compile ([`09a922b`](https://github.com/educationwarehouse/edwh-whitelabel-plugin/commit/09a922b2a0d2988245ea9eadcadbf138214684f1))
