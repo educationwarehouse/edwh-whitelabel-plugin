@@ -2,6 +2,12 @@
 
 <!--next-version-placeholder-->
 
+## v0.1.2 (2025-07-03)
+
+### Fix
+
+* Use `edwh.task` instead of `invoke.task` ([`50eda53`](https://github.com/educationwarehouse/edwh-whitelabel-plugin/commit/50eda530f37ca60d3c058a7e99de41bcee80df44))
+
 ## v0.1.1 (2024-02-05)
 ### Fix
 * **pip:** Since pip.compile 0.5.x, wl.compile is deprecated! ([`1736c2d`](https://github.com/educationwarehouse/edwh-whitelabel-plugin/commit/1736c2d797f638e08f9101b4fbde5344bf7c3b3b))
