@@ -1,9 +1,8 @@
 import sys
 import warnings
 
-from edwh import get_task
+from edwh import get_task, task
 from edwh_pipcompile_plugin.pipcompile_plugin import DEFAULT_SERVER
-from invoke import task
 
 
 @task
@@ -12,6 +11,7 @@ def setup(_):
 
 
 # deprecation zone:
+
 
 @task(name="compile", aliases=("pip-compile",))
 def wl_pip_compile(ctx, path, pypi_server=DEFAULT_SERVER):

@@ -110,11 +110,13 @@ all = [
 target-version = ["py37"]
 line-length = 120
 skip-string-normalization = true
+extend-exclude = ["*.bak/", "venv*/"]
 
 [tool.ruff]
 target-version = "py310"
 line-length = 120
 
+[tool.ruff.lint]
 select = [
     "F", # pyflake error
     "E", # pycodestyle error
@@ -133,7 +135,6 @@ unfixable = [
     # Don't touch unused imports
     "F401",
 ]
-extend-exclude = ["*.bak/", "venv*/"]
 
 ignore = [
     "RUF013" # implicit Optional
@@ -143,13 +144,13 @@ ignore = [
 profile = "black"
 extend_skip_glob = ["*.bak/*"]
 
-[tool.ruff.isort]
+[tool.ruff.lint.isort]
 known-first-party = ["edwh_whitelabel_plugin"]
 
-[tool.ruff.flake8-tidy-imports]
+[tool.ruff.lint.flake8-tidy-imports]
 ban-relative-imports = "all"
 
-[tool.ruff.per-file-ignores]
+[tool.ruff.lint.per-file-ignores]
 # Tests can use magic values, assertions, and relative imports
 "tests/**/*" = ["PLR2004", "S101", "TID252"]
 
